@@ -1,0 +1,19 @@
+package fasta
+
+import (
+	"strings"
+	"testing"
+
+	"github.com/stretchr/testify/assert"
+)
+
+const sample = `>gi|9626243|ref|NC_001416.1| Enterobacteria phage lambda, complete genome
+GGGCGGCGACCTCGCGGGTTTTCGCTATTTATGAAAATTTTCCGGTTTAAGGCGTTTCCGTTCTTCTTCG
+TCATAACTTAATGTTTTTATTTAAAATACCCTCTGAAAAGAAAGGAAACGACAGGTGCTGAAAGCGAGGC`
+
+func TestParse(t *testing.T) {
+	exp := "GGGCGGCGACCTCGCGGGTTTTCGCTATTTATGAAAATTTTCCGGTTTAAGGCGTTTCCGTTCTTCTTCGTCATAACTTAATGTTTTTATTTAAAATACCCTCTGAAAAGAAAGGAAACGACAGGTGCTGAAAGCGAGGC"
+	d, err := Parse(strings.NewReader(sample))
+	assert.Nil(t, err)
+	assert.Equal(t, exp, d.Sequence)
+}
