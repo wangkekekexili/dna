@@ -1,7 +1,7 @@
 package dna
 
 type DNA struct {
-	Sequence string
+	Sequence []byte
 }
 
 var complement = map[byte]byte{
@@ -14,8 +14,12 @@ var complement = map[byte]byte{
 
 func (d DNA) ReverseComplement() DNA {
 	result := make([]byte, len(d.Sequence))
-	for i := range []byte(d.Sequence) {
+	for i := range d.Sequence {
 		result[len(d.Sequence)-1-i] = complement[d.Sequence[i]]
 	}
-	return DNA{Sequence: string(result)}
+	return DNA{Sequence: result}
+}
+
+func (d DNA) String() string {
+	return string(d.Sequence)
 }

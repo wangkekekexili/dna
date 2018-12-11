@@ -19,7 +19,7 @@ func Parse(r io.Reader) (*dna.DNA, error) {
 		return nil, ErrNotFasta
 	}
 	for scanner.Scan() {
-		d.Sequence += scanner.Text()
+		d.Sequence = append(d.Sequence, []byte(scanner.Text())...)
 	}
 	if scanner.Err() != nil {
 		return nil, scanner.Err()

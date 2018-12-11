@@ -27,7 +27,7 @@ func Parse(r io.Reader) ([]*dna.Read, error) {
 				return nil, errors.New("")
 			}
 		}
-		read.Sequence = scanner.Text()
+		read.Sequence = append(read.Sequence, []byte(scanner.Text())...)
 
 		// Ignore third part.
 		if !scanner.Scan() {
@@ -46,7 +46,7 @@ func Parse(r io.Reader) ([]*dna.Read, error) {
 				return nil, errors.New("")
 			}
 		}
-		read.Quality = scanner.Text()
+		read.Quality = append(read.Quality, []byte(scanner.Text())...)
 
 		reads = append(reads, &read)
 	}
